@@ -1,0 +1,55 @@
+<html>
+ <head>
+<title>MyCommerce.com - Deal of the day</title>
+<!-- add in jquery and our js file(s) -->
+<script src="/js/jquery-2.1.1.min.js" type="text/javascript" language="javascript"></script>
+<script src="/js/site.js" type="text/javascript" language="javascript"></script>
+<!-- add in jquery ui-->
+<script src="/jqueryui/jquery-ui.min.js" type="text/javascript" language="javascript"></script>
+<!-- add in jquery ui css -->
+<link rel="stylesheet" type="text/css" href="/jqueryui/jquery-ui.min.css">
+<!-- add in our main style sheet -->
+<link rel="stylesheet" type="text/css" href="/css/main.css">
+</head>
+<script language="javascript">
+$(function() {
+    console.log( "ready!" );
+    buildProductTypeOptions();
+    // build the productdetails dialog...
+    $( "#productdetails" ).dialog({
+        width: "650px",
+        autoOpen : false,
+        modal : true,
+        buttons : {
+            Cancel : function(){
+                        $(this).dialog('close');
+                    }}
+    });
+});
+// add on change event to the combobox to display the products
+
+</script>
+<body>
+<div id="wrapper" class="main-wrapper">
+<div id="toolbar" class="main-toolbar"></div>
+<div id="section" class="main-pagesection">
+<div id="content" class="main-pagecontent">
+    <img src="/img/logo.jpg" class="logoimage">
+    <img src="/img/view-cart-small.png" class="cartimage">
+    <br><br>
+    <!-- this is where the product type selector shows up -->
+    Product Type : <select name="cboProductType" id="cboProductType" onchange="javascript:displayProducts();">
+    <option value="-all-">All Types</option>
+    </select>
+    <hr noshade>
+    <br><br>
+    <!-- product listing goes here -->
+    <div id="products"></div>
+    <div id="productdetails" title="Replace on show"><div id="productdialogcontent" class="productdetailsDialog"></div></div>
+</div>
+<div id="footerdiv" class="footer">&copy; 2014 - VMware - for demo purposes only</div>
+</div>
+
+</div>
+</body>
+</html>

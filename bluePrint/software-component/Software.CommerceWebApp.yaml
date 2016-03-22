@@ -1,0 +1,96 @@
+'@type': "SoftwareComponentType"
+createdDate: "2016-03-21T23:09:11.128Z"
+lastUpdated: "2016-03-22T00:38:54.920Z"
+id: "Software.CommerceWebApp"
+name: "CommerceWebApp"
+publishStatus: "PUBLISHED"
+publishStatusName: "Published"
+schema:
+  fields:
+  - id: "host"
+    label: "Container"
+    description: ""
+    dataType:
+      type: "ref"
+      componentTypeId: "com.vmware.csp.component.software.service"
+      classId: "softwareResourceType"
+      typeFilter: "Software.Apache"
+      label: "Apache"
+    state:
+      dependencies: []
+      facets:
+      - type: "mandatory"
+        value:
+          type: "constant"
+          value:
+            type: "boolean"
+            value: true
+      - type: "visible"
+        value:
+          type: "constantClause"
+          value:
+            type: "boolean"
+            value: false
+      - type: "internal"
+        value:
+          type: "constantClause"
+          value:
+            type: "boolean"
+            value: true
+    isMultiValued: false
+  - id: "installDir"
+    label: "installDir"
+    description: ""
+    dataType:
+      type: "primitive"
+      typeId: "STRING"
+    state:
+      dependencies: []
+      facets:
+      - type: "defaultValue"
+        value:
+          type: "constant"
+          value:
+            type: "string"
+            value: "/var/www/html"
+      - type: "mandatory"
+        value:
+          type: "constant"
+          value:
+            type: "boolean"
+            value: true
+    isMultiValued: false
+  - id: "artifactURL"
+    label: "artifactURL"
+    description: ""
+    dataType:
+      type: "primitive"
+      typeId: "STRING"
+    state:
+      dependencies: []
+      facets:
+      - type: "defaultValue"
+        value:
+          type: "constant"
+          value:
+            type: "string"
+            value: ""
+      - type: "mandatory"
+        value:
+          type: "constant"
+          value:
+            type: "boolean"
+            value: true
+    isMultiValued: false
+containerFieldId: "host"
+lifecycleTasks:
+- createdDate: "2016-03-21T23:09:11.129Z"
+  lastUpdated: "2016-03-22T00:38:54.920Z"
+  script:
+    scriptContent: "#!/bin/bash\n\ncd /tmp\nwget  --no-check-certificate ${artifactURL}\
+      \ -O commerceWebApp.zip\n\nunzip -o /tmp/commerceWebApp.zip  -d $installDir "
+    isRebootAfter: false
+    scriptTypeId: "Bash"
+  taskDescriptorRef:
+    id: "INSTALL"
+    label: "Install"

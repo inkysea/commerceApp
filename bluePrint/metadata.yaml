@@ -1,0 +1,24 @@
+name: "auto-generated-pkg-ccd7faae-8a35-4cf6-92b1-11d3e85521e7"
+productVersion: "7.0.1-SNAPSHOT"
+data:
+- locator: "composite-blueprint/CommerceApp.yaml"
+  name: "CommerceApp"
+  description: "CommerceApp"
+  dependencies:
+  - "software-component/Software.Apache.yaml"
+  - "software-component/Software.CommerceWebApp.yaml"
+  - "software-component/Software.centosyumrepo.yaml"
+- locator: "software-component/Software.CommerceWebApp.yaml"
+  name: "CommerceWebApp"
+  dependencies:
+  - "software-component/Software.Apache.yaml"
+- locator: "software-component/Software.Apache.yaml"
+  name: "Apache"
+  description: "Apache 2.2 The Apache HTTP Server is an open-source HTTP server for\
+    \ modern operating systems including UNIX, Microsoft Windows, Mac OS/X and Netware.\
+    \ The goal of this project is to provide a secure, efficient and extensible server\
+    \ that provides HTTP services observing the current HTTP standards. Apache has\
+    \ been the most popular web server on the Internet since April of 1996."
+- locator: "software-component/Software.centosyumrepo.yaml"
+  name: "centos yum repo"
+exportTime: "2016-03-22T00:56:11.781Z"

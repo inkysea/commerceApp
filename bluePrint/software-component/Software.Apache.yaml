@@ -1,0 +1,501 @@
+'@type': "SoftwareComponentType"
+createdDate: "2016-03-22T00:23:45.135Z"
+lastUpdated: "2016-03-22T00:24:59.517Z"
+id: "Software.Apache"
+name: "Apache"
+description: "Apache 2.2 The Apache HTTP Server is an open-source HTTP server for\
+  \ modern operating systems including UNIX, Microsoft Windows, Mac OS/X and Netware.\
+  \ The goal of this project is to provide a secure, efficient and extensible server\
+  \ that provides HTTP services observing the current HTTP standards. Apache has been\
+  \ the most popular web server on the Internet since April of 1996."
+publishStatus: "PUBLISHED"
+publishStatusName: "Published"
+schema:
+  fields:
+  - id: "http_proxy_port"
+    label: "http_proxy_port"
+    description: "HTTP proxy port number"
+    dataType:
+      type: "primitive"
+      typeId: "STRING"
+    state:
+      dependencies: []
+      facets:
+      - type: "defaultValue"
+        value:
+          type: "constant"
+          value:
+            type: "string"
+            value: "8081"
+      - type: "mandatory"
+        value:
+          type: "constant"
+          value:
+            type: "boolean"
+            value: true
+    isMultiValued: false
+  - id: "JAVA_HOME"
+    label: "JAVA_HOME"
+    description: "The directory in which JRE 1.7 is installed"
+    dataType:
+      type: "primitive"
+      typeId: "STRING"
+    state:
+      dependencies: []
+      facets:
+      - type: "defaultValue"
+        value:
+          type: "constant"
+          value:
+            type: "string"
+            value: "/opt/vmware-jre"
+      - type: "mandatory"
+        value:
+          type: "constant"
+          value:
+            type: "boolean"
+            value: true
+    isMultiValued: false
+  - id: "appsrv_routes"
+    label: "appsrv_routes"
+    description: "Application server route configuration to apply sticky sessions"
+    dataType:
+      type: "primitive"
+      typeId: "STRING"
+    state:
+      dependencies: []
+      facets:
+      - type: "defaultValue"
+        value:
+          type: "constant"
+          value:
+            type: "multiple"
+            elementTypeId: "STRING"
+            items:
+            - type: "string"
+              value: "None"
+      - type: "mandatory"
+        value:
+          type: "constant"
+          value:
+            type: "boolean"
+            value: true
+    isMultiValued: true
+  - id: "http_node_port"
+    label: "http_node_port"
+    description: "Apache HTTP server port. When using Apache as a load balancer for\
+      \ an application server or a cluster of them, this port must bind to the relevant\
+      \ ports in those application server nodes."
+    dataType:
+      type: "primitive"
+      typeId: "STRING"
+    state:
+      dependencies: []
+      facets:
+      - type: "defaultValue"
+        value:
+          type: "constant"
+          value:
+            type: "multiple"
+            elementTypeId: "STRING"
+            items:
+            - type: "string"
+              value: "8080"
+      - type: "mandatory"
+        value:
+          type: "constant"
+          value:
+            type: "boolean"
+            value: true
+    isMultiValued: true
+  - id: "http_port"
+    label: "http_port"
+    description: "HTTP port number to serve static content.  Leave blank to disable\
+      \ this feature."
+    dataType:
+      type: "primitive"
+      typeId: "STRING"
+    state:
+      dependencies: []
+      facets:
+      - type: "defaultValue"
+        value:
+          type: "constant"
+          value:
+            type: "string"
+            value: "80"
+    isMultiValued: false
+  - id: "http_node_ips"
+    label: "http_node_ips"
+    description: "Array of ips to proxy.  Set to [\"None\"] to disable proxy."
+    dataType:
+      type: "primitive"
+      typeId: "STRING"
+    state:
+      dependencies: []
+      facets:
+      - type: "defaultValue"
+        value:
+          type: "constant"
+          value:
+            type: "multiple"
+            elementTypeId: "STRING"
+            items:
+            - type: "string"
+              value: "None"
+      - type: "mandatory"
+        value:
+          type: "constant"
+          value:
+            type: "boolean"
+            value: true
+    isMultiValued: true
+  - id: "config_httpd_conf"
+    label: "config_httpd_conf"
+    description: "Read-only command string for other services to see how to stop apache."
+    dataType:
+      type: "primitive"
+      typeId: "STRING"
+    state:
+      dependencies: []
+      facets:
+      - type: "derivedValue"
+        value:
+          type: "constant"
+          value:
+            type: "string"
+            value: "/etc/httpd/conf/httpd.conf"
+      - type: "defaultValue"
+        value:
+          type: "constant"
+          value:
+            type: "string"
+            value: "/etc/httpd/conf/httpd.conf"
+    isMultiValued: false
+  - id: "tomcat_context"
+    label: "tomcat_context"
+    description: "Optional property of the WAR context to proxy to using ajp on Tomcat"
+    dataType:
+      type: "primitive"
+      typeId: "STRING"
+    state:
+      dependencies: []
+      facets: []
+    isMultiValued: false
+  - id: "config_static_site"
+    label: "config_static_site"
+    description: "Read-only path to static site directory."
+    dataType:
+      type: "primitive"
+      typeId: "STRING"
+    state:
+      dependencies: []
+      facets:
+      - type: "derivedValue"
+        value:
+          type: "constant"
+          value:
+            type: "string"
+            value: "/var/www/html"
+      - type: "defaultValue"
+        value:
+          type: "constant"
+          value:
+            type: "string"
+            value: "/var/www/html"
+    isMultiValued: false
+  - id: "ajp_proxy_context"
+    label: "ajp_proxy_context"
+    description: "Optional property to set which URL context to proxy to Tomcat using\
+      \ ajp."
+    dataType:
+      type: "primitive"
+      typeId: "STRING"
+    state:
+      dependencies: []
+      facets:
+      - type: "derivedValue"
+        value:
+          type: "constant"
+    isMultiValued: false
+  - id: "host"
+    label: ""
+    description: ""
+    dataType:
+      type: "ref"
+      componentTypeId: "com.vmware.csp.iaas.blueprint.service"
+      classId: "Infrastructure.Machine.Schema"
+      label: "Machine"
+    state:
+      dependencies: []
+      facets:
+      - type: "mandatory"
+        value:
+          type: "constant"
+          value:
+            type: "boolean"
+            value: true
+      - type: "visible"
+        value:
+          type: "constantClause"
+          value:
+            type: "boolean"
+            value: false
+      - type: "internal"
+        value:
+          type: "constantClause"
+          value:
+            type: "boolean"
+            value: true
+    isMultiValued: false
+  - id: "service_stop"
+    label: "service_stop"
+    description: "Read-only command string for other services to see how to stop apache."
+    dataType:
+      type: "primitive"
+      typeId: "STRING"
+    state:
+      dependencies: []
+      facets:
+      - type: "derivedValue"
+        value:
+          type: "constant"
+          value:
+            type: "string"
+            value: "service httpd stop"
+      - type: "defaultValue"
+        value:
+          type: "constant"
+          value:
+            type: "string"
+            value: "service httpd stop"
+    isMultiValued: false
+  - id: "use_ajp"
+    label: "use_ajp"
+    description: "Enable this when configuring proxy to Tomcat instance that is using\
+      \ AJP. Set to YES or NO."
+    dataType:
+      type: "primitive"
+      typeId: "STRING"
+    state:
+      dependencies: []
+      facets:
+      - type: "defaultValue"
+        value:
+          type: "constant"
+          value:
+            type: "string"
+            value: "NO"
+      - type: "mandatory"
+        value:
+          type: "constant"
+          value:
+            type: "boolean"
+            value: true
+    isMultiValued: false
+  - id: "service_start"
+    label: "service_start"
+    description: "Read-only command string for other services to see how to start\
+      \ apache."
+    dataType:
+      type: "primitive"
+      typeId: "STRING"
+    state:
+      dependencies: []
+      facets:
+      - type: "derivedValue"
+        value:
+          type: "constant"
+          value:
+            type: "string"
+            value: "service httpd start"
+      - type: "defaultValue"
+        value:
+          type: "constant"
+          value:
+            type: "string"
+            value: "service httpd start"
+    isMultiValued: false
+  - id: "httpd_dir"
+    label: "httpd_dir"
+    description: "Read-only path to apache base dir"
+    dataType:
+      type: "primitive"
+      typeId: "STRING"
+    state:
+      dependencies: []
+      facets:
+      - type: "derivedValue"
+        value:
+          type: "constant"
+          value:
+            type: "string"
+            value: "/etc/httpd"
+      - type: "defaultValue"
+        value:
+          type: "constant"
+          value:
+            type: "string"
+            value: "/etc/httpd"
+    isMultiValued: false
+  - id: "autogen_sticky_cookie"
+    label: "autogen_sticky_cookie"
+    description: "Set to YES when load balancing non-Java app servers"
+    dataType:
+      type: "primitive"
+      typeId: "STRING"
+    state:
+      dependencies: []
+      facets:
+      - type: "defaultValue"
+        value:
+          type: "constant"
+          value:
+            type: "string"
+            value: "NO"
+    isMultiValued: false
+  - id: "service_restart"
+    label: "service_restart"
+    description: "Read-only command string for other services to see how to restart\
+      \ apache."
+    dataType:
+      type: "primitive"
+      typeId: "STRING"
+    state:
+      dependencies: []
+      facets:
+      - type: "derivedValue"
+        value:
+          type: "constant"
+          value:
+            type: "string"
+            value: "service httpd restart"
+      - type: "defaultValue"
+        value:
+          type: "constant"
+          value:
+            type: "string"
+            value: "service httpd restart"
+    isMultiValued: false
+containerFieldId: "host"
+lifecycleTasks:
+- createdDate: "2016-03-22T00:23:45.137Z"
+  lastUpdated: "2016-03-22T00:23:45.137Z"
+  script:
+    scriptContent: "#!/bin/bash \n# Import global conf \nexport ftp_proxy=${ftp_proxy:-$global_ftp_proxy}\n\
+      echo \"Setting ftp_proxy to $ftp_proxy\"\n\nexport http_proxy=${http_proxy:-$global_http_proxy}\n\
+      echo \"Setting http_proxy to $http_proxy\"\n\nexport https_proxy=${https_proxy:-$global_https_proxy}\n\
+      echo \"Setting https_proxy to $https_proxy\"\n\n\n#\n# Determine operating system\
+      \ and version \n#\nexport OS=\nexport OS_VERSION=\n\nif [ -f /etc/redhat-release\
+      \ ]; then\n    # For CentOS the result will be 'CentOS'\n    # For RHEL the\
+      \ result will be 'Red'\n    OS=$(cat /etc/redhat-release | awk {'print $1'})\n\
+      \n    if [ -n $OS ] && [ $OS = 'CentOS' ]; then\n        OS_VERSION=$(cat /etc/redhat-release\
+      \ | awk '{print $3}')\n    else\n        # RHEL\n        OS_VERSION=$(cat /etc/redhat-release\
+      \ | awk '{print $7}')\n    fi\n\nelif [ -f /etc/SuSE-release ]; then\n    OS=SuSE\n\
+      \n    MAJOR_VERSION=$(cat /etc/SuSE-release | grep VERSION | awk '{print $3}')\n\
+      \    PATCHLEVEL=$(cat /etc/SuSE-release | grep PATCHLEVEL | awk '{print $3}')\n\
+      \n    OS_VERSION=\"$MAJOR_VERSION.$PATCHLEVEL\"\n\nelif [ -f /usr/bin/lsb_release\
+      \ ]; then\n    # For Ubuntu the result is 'Ubuntu'\n    OS=$(lsb_release -a\
+      \ 2> /dev/null | grep Distributor | awk '{print $3}')\n    OS_VERSION=$(lsb_release\
+      \ -a 2> /dev/null | grep Release | awk '{print $2}')\n\nfi\n\necho \"Using operating\
+      \ system '$OS' and version '$OS_VERSION'\"\n\nexport PATH=$PATH:$JAVA_HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\n\
+      set -e\n\n# Tested on CentOS\nif [ -x /usr/sbin/selinuxenabled ] && /usr/sbin/selinuxenabled;\
+      \ then\n    # SELinux can be disabled by setting \"/usr/sbin/setenforce Permissive\"\
+      \n    echo 'SELinux in enabled on this VM template.  This service requires SELinux\
+      \ to be disabled to install successfully'\n    exit 1\nfi\n\nyum --nogpgcheck\
+      \ -y clean all\nyum --nogpgcheck -y install httpd\n\necho \"Finished INSTALL\
+      \ for Apache service.\""
+    isRebootAfter: false
+    scriptTypeId: "Bash"
+  taskDescriptorRef:
+    id: "INSTALL"
+    label: "Install"
+- createdDate: "2016-03-22T00:23:45.139Z"
+  lastUpdated: "2016-03-22T00:23:45.139Z"
+  script:
+    scriptContent: "export ftp_proxy=${ftp_proxy:-$global_ftp_proxy}\necho \"Setting\
+      \ ftp_proxy to $ftp_proxy\"\n\nexport http_proxy=${http_proxy:-$global_http_proxy}\n\
+      echo \"Setting http_proxy to $http_proxy\"\n\nexport https_proxy=${https_proxy:-$global_https_proxy}\n\
+      echo \"Setting https_proxy to $https_proxy\"\n\n\n#\n# Determine operating system\
+      \ and version \n#\nexport OS=\nexport OS_VERSION=\n\nif [ -f /etc/redhat-release\
+      \ ]; then\n    # For CentOS the result will be 'CentOS'\n    # For RHEL the\
+      \ result will be 'Red'\n    OS=$(cat /etc/redhat-release | awk {'print $1'})\n\
+      \n    if [ -n $OS ] && [ $OS = 'CentOS' ]; then\n        OS_VERSION=$(cat /etc/redhat-release\
+      \ | awk '{print $3}')\n    else\n        # RHEL\n        OS_VERSION=$(cat /etc/redhat-release\
+      \ | awk '{print $7}')\n    fi\n\nelif [ -f /etc/SuSE-release ]; then\n    OS=SuSE\n\
+      \n    MAJOR_VERSION=$(cat /etc/SuSE-release | grep VERSION | awk '{print $3}')\n\
+      \    PATCHLEVEL=$(cat /etc/SuSE-release | grep PATCHLEVEL | awk '{print $3}')\n\
+      \n    OS_VERSION=\"$MAJOR_VERSION.$PATCHLEVEL\"\n\nelif [ -f /usr/bin/lsb_release\
+      \ ]; then\n    # For Ubuntu the result is 'Ubuntu'\n    OS=$(lsb_release -a\
+      \ 2> /dev/null | grep Distributor | awk '{print $3}')\n    OS_VERSION=$(lsb_release\
+      \ -a 2> /dev/null | grep Release | awk '{print $2}')\n\nfi\n\necho \"Using operating\
+      \ system '$OS' and version '$OS_VERSION'\"\n\nexport PATH=$PATH:$JAVA_HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\n\
+      set -e\n\nservice httpd restart"
+    isRebootAfter: false
+    scriptTypeId: "Bash"
+  taskDescriptorRef:
+    id: "START"
+    label: "Start"
+- createdDate: "2016-03-22T00:23:45.138Z"
+  lastUpdated: "2016-03-22T00:23:45.138Z"
+  script:
+    scriptContent: "#!/bin/bash\n# Import global conf \nexport ftp_proxy=${ftp_proxy:-$global_ftp_proxy}\n\
+      echo \"Setting ftp_proxy to $ftp_proxy\"\n\nexport http_proxy=${http_proxy:-$global_http_proxy}\n\
+      echo \"Setting http_proxy to $http_proxy\"\n\nexport https_proxy=${https_proxy:-$global_https_proxy}\n\
+      echo \"Setting https_proxy to $https_proxy\"\n\n\n#\n# Determine operating system\
+      \ and version \n#\nexport OS=\nexport OS_VERSION=\n\nif [ -f /etc/redhat-release\
+      \ ]; then\n    # For CentOS the result will be 'CentOS'\n    # For RHEL the\
+      \ result will be 'Red'\n    OS=$(cat /etc/redhat-release | awk {'print $1'})\n\
+      \n    if [ -n $OS ] && [ $OS = 'CentOS' ]; then\n        OS_VERSION=$(cat /etc/redhat-release\
+      \ | awk '{print $3}')\n    else\n        # RHEL\n        OS_VERSION=$(cat /etc/redhat-release\
+      \ | awk '{print $7}')\n    fi\n\nelif [ -f /etc/SuSE-release ]; then\n    OS=SuSE\n\
+      \n    MAJOR_VERSION=$(cat /etc/SuSE-release | grep VERSION | awk '{print $3}')\n\
+      \    PATCHLEVEL=$(cat /etc/SuSE-release | grep PATCHLEVEL | awk '{print $3}')\n\
+      \n    OS_VERSION=\"$MAJOR_VERSION.$PATCHLEVEL\"\n\nelif [ -f /usr/bin/lsb_release\
+      \ ]; then\n    # For Ubuntu the result is 'Ubuntu'\n    OS=$(lsb_release -a\
+      \ 2> /dev/null | grep Distributor | awk '{print $3}')\n    OS_VERSION=$(lsb_release\
+      \ -a 2> /dev/null | grep Release | awk '{print $2}')\n\nfi\n\necho \"Using operating\
+      \ system '$OS' and version '$OS_VERSION'\"\n\nexport PATH=$PATH:$JAVA_HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\n\
+      set -e\n\n# set up static port and proxy port to listen\nif [ ! \"$http_port\"\
+      \ == \"\" ]; then\n    sed -ie \"s/^Listen .*/Listen $http_port\\nListen $http_proxy_port/g\"\
+      \ /etc/httpd/conf/httpd.conf\nelse\n    # setup proxy port only to listen\n\
+      \    sed -ie \"s/^Listen .*/Listen $http_proxy_port/g\" /etc/httpd/conf/httpd.conf\n\
+      fi\n\n# set up auto-start on booting\nchkconfig httpd on\n\nif [ ! \"$http_port\"\
+      \ == \"\" ]; then\n    echo \"Adding static site configuration on port $http_port\"\
+      \n\n    cat >> /etc/httpd/conf/httpd.conf << EOF\n\n<VirtualHost *:$http_port>\n\
+      \    DocumentRoot /var/www/html\n    ServerName localhost\n\n # Add configuration\
+      \ for Hyperic monitoring\n <Location /server-status>\n    SetHandler server-status\n\
+      \    Order deny,allow\n    Deny from all\n#    Allow from localhost\n    Allow\
+      \ from 127.0.0.1\n </Location>\n\n</VirtualHost>\n\nEOF\n\n    # Copy the default\
+      \ index page into place \n    #cp /var/www/error/noindex.html /var/www/html/index.html\n\
+      fi\n\n\nif [ ! \"$http_node_ips\" == \"None\" ]; then\n    SUBSTR=\"\"\n\n \
+      \   if [ \"$use_ajp\" == \"YES\" ]; then\n        for (( i = 0 ; i < ${#http_node_ips[@]}\
+      \ ; i++ )); do\n            SUBSTR=\"$SUBSTR\"$'\\n'\"BalancerMember ajp://${http_node_ips[$i]}:${http_node_port[$i]}\
+      \ route=${appsrv_routes[$i]}\"\n        done\n        echo \"Proxy load balancer\
+      \ ajp config: \"$SUBSTR\n\n        cat >> /etc/httpd/conf/httpd.conf << EOF\n\
+      LoadModule proxy_ajp_module modules/mod_proxy_ajp.so\n\n<VirtualHost *:$http_proxy_port>\n\
+      \n    RewriteEngine on\n    RewriteRule ^(.*/)$ \\$1bank/main.faces [R=301,L]\n\
+      \n  <Proxy balancer://mycluster>\n$SUBSTR\n  </Proxy>\n  ProxyPass /$ajp_proxy_context\
+      \ balancer://mycluster/$tomcat_context\n</VirtualHost>\n\nEOF\n    else\n  \
+      \      for (( i = 0 ; i < ${#http_node_ips[@]} ; i++ )); do\n            SUBSTR=\"\
+      $SUBSTR\"$'\\n'\"BalancerMember http://${http_node_ips[$i]}:${http_node_port[$i]}\
+      \ route=${appsrv_routes[$i]}\"\n        done\n        echo \"Proxy load balancer\
+      \ config: \"$SUBSTR\n\n        COOKIE_HEADER_DIRECTIVE=\"\"\n        STICKY_SESSION_NAME=\"\
+      JSESSIONID|jsessionid\"\n        if [ \"$autogen_sticky_cookie\" == \"YES\"\
+      \ ]; then\n            STICKY_SESSION_NAME=\"ROUTEID\"\n            COOKIE_HEADER_DIRECTIVE=\"\
+      Header add Set-Cookie \\\"ROUTEID=.%{BALANCER_WORKER_ROUTE}e; path=/\\\" env=BALANCER_ROUTE_CHANGED\"\
+      \n        fi\n        \n        cat >> /etc/httpd/conf/httpd.conf << EOF\n#\
+      \ Add mod_status for Hyperic monitoring\nLoadModule status_module modules/mod_status.so\n\
+      ExtendedStatus On\n\n<VirtualHost *:$http_proxy_port>\n\n\n\n# Add configuration\
+      \ for Hyperic monitoring\n <Location /server-status>\n    SetHandler server-status\n\
+      \    Order deny,allow\n    Deny from all\n#    Allow from localhost\n    Allow\
+      \ from 127.0.0.1\n </Location>\n\n <Proxy balancer://mycluster>\n$SUBSTR\n \
+      \ </Proxy>\n  ProxyPass /server-status !\n  ProxyPass / balancer://mycluster/\
+      \ stickysession=$STICKY_SESSION_NAME nofailover=On\n  ProxyPassReverse / balancer://mycluster/\n\
+      \  ProxyPreserveHost On\n$COOKIE_HEADER_DIRECTIVE  \n</VirtualHost>\n\nEOF\n\
+      \    fi\n          \nelse\n    echo \"Proxy load balancer disabled\"\nfi"
+    isRebootAfter: false
+    scriptTypeId: "Bash"
+  taskDescriptorRef:
+    id: "CONFIGURE"
+    label: "Configure"

@@ -1,0 +1,111 @@
+{
+    "products": [
+        {
+            "product": {
+                "title": "TCI EZ-TCU Automatic Transmission Controller",
+                "bodyHtml": "<strong>These TCI EZ-TCU</strong> automatic transmission controllers are fully configured right out of the box--no tuning is necessary. Simply install them with the included instructions and then start the system by answering the simple setup wizard questions on the included hand-held unit. They are capable of real-time switchable calibrations, which allows for multiple setups.", 
+                "vendor": "TCI",
+                "sku" : "12345678",
+                "producttype": "Transmission",
+                "productimage" :"img/tci_small_computer.jpg",
+                "startingat" : "$599.99",
+                "variants": [
+                    {
+                        "text": "GM 4L60e/4L65e",
+                        "price": "599.99",
+                        "sku": "TCI-4L60E"
+                    },
+                    {
+                        "text": "GM 4L80e/4L85e",
+                        "price": "699.99",
+                        "sku": "TCI-4L80E"
+                    }
+                ]
+            }
+        },
+        {
+            "product": {
+                "title": "MSD Atomic Transmission Control Modules 2760",
+                "bodyHtml": "<strong>These MSD Atomic </strong>transmission control modules are designed to adjust the operating parameters of later model electronically controlled 4-speed automatic overdrive transmissions. They are simple to configure with the supplied hand-held monitor--no PC is required. ",
+                "vendor": "MSD",
+                "sku" : "42345678",
+                "producttype": "Transmission",
+                "productimage" :"img/msd-computer.jpg",
+                "startingat" : "$549.99",
+                "variants": [
+                    {
+                        "text": "GM 4L60e/4L65e",
+                        "price": "549.99",
+                        "sku": "MSD-4L60E"
+                    },
+                    {
+                        "text": "GM 4L80e/4L85e",
+                        "price": "599.99",
+                        "sku": "MSD-4L80E"
+                    },
+                    {
+                        "text": "Ford AODE",
+                        "price": "649.99",
+                        "sku": "MSD-AODE"
+                    }
+                ]
+            }
+        },
+        {
+            "product": {
+                "title": "LS3 6.2L",
+                "bodyHtml": "<strong>GM Performance LS3</strong> imagine what a 525HP LS3 can do to your 1979 Olds station wagon !",
+                "vendor": "GMPP",
+                "sku" : "34345678",
+                "producttype": "Engine",
+                "productimage" :"img/ls3_engine.jpg",
+                "startingat" : "$5995.99",
+                "variants": [
+                    {
+                        "text": "426 HP",
+                        "price": "5995.99",
+                        "sku": "LS3-426"
+                    },
+                    {
+                        "text": "470 HP",
+                        "price": "6995.99",
+                        "sku": "LS3-470"
+                    },
+                    {
+                        "text": "525 HP",
+                        "price": "8649.99",
+                        "sku": "LS3-525"
+                    }
+                ]
+            }
+        },
+        {
+            "product": {
+                "title": "New Balance Classics M574",
+                "bodyHtml": "<strong>Classic !</strong> Step back into 1970's in style !!!",
+                "vendor": "New Balance",
+                "sku" : "894345678",
+                "producttype": "Shoes",
+                "productimage" :"img/m574.jpg",
+                "startingat" : "$74.94",
+                "variants": [
+                    {
+                        "text": "Mens size 10",
+                        "price": "74.95",
+                        "sku": "574-M-10"
+                    },
+                    {
+                        "text": "Womens size 6",
+                        "price": "74.99",
+                        "sku": "574-W-6"
+                    },
+                    {
+                        "text": "Youth size 13",
+                        "price": "84.99",
+                        "sku": "574-Y-13"
+                    }
+                ]
+            }
+        }
+    ]
+}

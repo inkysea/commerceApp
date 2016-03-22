@@ -1,0 +1,185 @@
+id: CommerceApp
+name: CommerceApp
+description: Commerce Application with NSX
+status: PUBLISHED
+properties:
+  __nsx.management_endpoint_name:
+    fixed: vCenter
+    secured: false
+    visible: false
+  __nsx.transport_zone_name:
+    fixed: NSXTransport
+    secured: false
+    visible: false
+  _archiveDays: 1
+  _leaseDays:
+    default: 1
+    max: 90
+    min: 1
+components:
+  Apache_1:
+    type: Software.Apache
+    dependsOn:
+    - centos_yum_repo_1
+    data:
+      JAVA_HOME:
+        default: /opt/vmware-jre
+        required: true
+      ajp_proxy_context: {}
+      appsrv_routes:
+        default:
+        - None
+        required: true
+      autogen_sticky_cookie: 'NO'
+      config_httpd_conf:
+        fixed: /etc/httpd/conf/httpd.conf
+      config_static_site:
+        fixed: /var/www/html
+      host:
+        fixed: ${_resource~CentOS7}
+      http_node_ips:
+        default:
+        - None
+        required: true
+      http_node_port:
+        default:
+        - '8080'
+        required: true
+      http_port: '80'
+      http_proxy_port:
+        default: '8081'
+        required: true
+      httpd_dir:
+        fixed: /etc/httpd
+      service_restart:
+        fixed: service httpd restart
+      service_start:
+        fixed: service httpd start
+      service_stop:
+        fixed: service httpd stop
+      tomcat_context: {}
+      use_ajp:
+        default: 'NO'
+        required: true
+  CentOS7:
+    type: Infrastructure.CatalogItem.Machine.Virtual.vSphere
+    data:
+      _cluster:
+        default: 1
+        max: 1
+        min: 1
+      action:
+        fixed: LinkedClone
+      allow_storage_policies:
+        fixed: false
+      blueprint_type:
+        fixed: '1'
+      cpu:
+        default: 1
+        max: 2
+        min: 1
+      disks:
+      - capacity: 80
+        custom_properties: null
+        id: 1458583020412
+        initial_location: ''
+        is_clone: true
+        label: Hard disk 1
+        storage_reservation_policy: ''
+        userCreated: false
+        volumeId: 0
+      display_location:
+        fixed: false
+      guest_customization_specification: Linux
+      max_network_adapters: {}
+      max_volumes: {}
+      memory:
+        default: 512
+        max: 1024
+        min: 512
+      nics:
+      - address: ''
+        assignment_type: Static
+        id: 0
+        load_balancing: HTTP
+        network: ${_resource~WEB}
+        network_profile: NSX Routed
+      provisioning_workflow:
+        fixed:
+          id: CloneWorkflow
+          label: CloneWorkflow
+      security_groups: []
+      security_tags: []
+      source_machine:
+        fixed:
+          id: 390406ac-457d-420f-8df8-a6077e63125f
+          label: centos7_vra
+      source_machine_external_snapshot:
+        fixed: 2
+      source_machine_name:
+        fixed: centos7_vra
+      source_machine_vmsnapshot:
+        fixed:
+          id: '13'
+      storage:
+        default: 80
+        max: 80
+        min: 80
+  CommerceWebApp_1:
+    type: Software.CommerceWebApp
+    data:
+      artifactURL:
+        default: http://10.25.25.40:8080/jenkins/job/CommerceApp/2/artifact/commerceApp.zip
+        required: true
+      host:
+        fixed: ${_resource~Apache_1}
+      installDir:
+        default: /var/www/html
+        required: true
+  NSX_LB:
+    type: Infrastructure.Network.LoadBalancer.NSX.OnDemand
+    data:
+      name:
+        fixed: NSX_LB
+      services:
+        fixed:
+        - health_check_interval: 5
+          health_threshold: 5
+          id: HTTP
+          isSelected: true
+          name: HTTP
+          port: 80
+          response_timeout: 5
+          service_URI: ''
+          unhealth_threshold: 10
+      tier:
+        fixed: ${_resource~CentOS7}
+      tier_nic_index:
+        fixed: 0
+      vip_network:
+        fixed: ${_resource~WEB}
+  WEB:
+    type: Infrastructure.Network.Network.NSX.OnDemand.Routed
+    data:
+      dns:
+        fixed:
+          dns_search_suffix: inkysea.com,inkysea.local
+          dns_suffix: inkysea.com
+          primary_dns: 10.25.27.1
+      name:
+        fixed: WEB
+      parent_network_profile:
+        fixed: NSX Routed
+  centos_yum_repo_1:
+    type: Software.centosyumrepo
+    data:
+      host:
+        fixed: ${_resource~CentOS7}
+      repoURL: https\:\/\/vra-app-1\.inkysea\.com\/artifactory\/list/
+layout:
+  Apache_1: 0,0
+  CentOS7: 0,1
+  CommerceWebApp_1: 0,0
+  NSX_LB: 0,0
+  WEB: 1,0
+  centos_yum_repo_1: 1,0

@@ -1,0 +1,70 @@
+'@type': "SoftwareComponentType"
+createdDate: "2016-03-16T03:11:15.805Z"
+lastUpdated: "2016-03-21T17:41:28.953Z"
+id: "Software.centosyumrepo"
+name: "centos yum repo"
+publishStatus: "PUBLISHED"
+publishStatusName: "Published"
+schema:
+  fields:
+  - id: "repoURL"
+    label: "repoURL"
+    description: ""
+    dataType:
+      type: "primitive"
+      typeId: "STRING"
+    state:
+      dependencies: []
+      facets:
+      - type: "defaultValue"
+        value:
+          type: "constant"
+          value:
+            type: "string"
+            value: "https\\:\\/\\/vra-app-1\\.inkysea\\.com\\/artifactory\\/list/"
+    isMultiValued: false
+  - id: "host"
+    label: "Container"
+    description: ""
+    dataType:
+      type: "ref"
+      componentTypeId: "com.vmware.csp.iaas.blueprint.service"
+      classId: "Infrastructure.Machine.Schema"
+      label: "Machine"
+    state:
+      dependencies: []
+      facets:
+      - type: "mandatory"
+        value:
+          type: "constant"
+          value:
+            type: "boolean"
+            value: true
+      - type: "visible"
+        value:
+          type: "constantClause"
+          value:
+            type: "boolean"
+            value: false
+      - type: "internal"
+        value:
+          type: "constantClause"
+          value:
+            type: "boolean"
+            value: true
+    isMultiValued: false
+containerFieldId: "host"
+lifecycleTasks:
+- createdDate: "2016-03-16T03:11:15.806Z"
+  lastUpdated: "2016-03-16T03:25:20.467Z"
+  script:
+    scriptContent: "#!/bin/sh\n\nsed  -i '/\\[main\\]/a sslverify=0' /etc/yum.conf\n\
+      \nfind /etc/yum.repos.d/ | grep CentOS | xargs sed -i -e 's/mirrorlist\\=/\\\
+      #mirrorlist\\=/g'\n\nfind /etc/yum.repos.d/ | grep CentOS | xargs  sed -i -e\
+      \ 's/#baseurl\\=http\\:\\/\\/mirror\\.centos\\.org\\//baseurl\\=https\\:\\/\\\
+      /vra-app-1\\.inkysea\\.com\\/artifactory\\/list\\//g'\n"
+    isRebootAfter: false
+    scriptTypeId: "Bash"
+  taskDescriptorRef:
+    id: "INSTALL"
+    label: "Install"
