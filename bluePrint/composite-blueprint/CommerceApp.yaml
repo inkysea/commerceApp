@@ -136,28 +136,6 @@ components:
       installDir:
         default: /var/www/html
         required: true
-  NSX_LB:
-    type: Infrastructure.Network.LoadBalancer.NSX.OnDemand
-    data:
-      name:
-        fixed: NSX_LB
-      services:
-        fixed:
-        - health_check_interval: 5
-          health_threshold: 5
-          id: HTTP
-          isSelected: true
-          name: HTTP
-          port: 80
-          response_timeout: 5
-          service_URI: ''
-          unhealth_threshold: 10
-      tier:
-        fixed: ${_resource~CentOS7}
-      tier_nic_index:
-        fixed: 0
-      vip_network:
-        fixed: ${_resource~WEB}
   WEB:
     type: Infrastructure.Network.Network.NSX.OnDemand.Routed
     data:
