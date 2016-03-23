@@ -131,6 +131,7 @@ components:
       artifactURL:
         default: http://10.25.25.40:8080/jenkins/job/CommerceApp/2/artifact/commerceApp.zip
         required: true
+        visible: true
       host:
         fixed: ${_resource~Apache_1}
       installDir:
