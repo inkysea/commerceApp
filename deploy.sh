@@ -16,11 +16,11 @@ rm -rf $HTTP_DOC/*
 
 echo "=====install new artifact======"
 cd $DOWNLOAD_PATH
-unzip -o $DOWNLOAD_PATH/$zipFile
+unzip -o $DOWNLOAD_PATH/commerceApp_${build_id}.zip
 
 mv www/* ${HTTP_DOC}
 
 chmod -R 755 ${HTTP_DOC}/*
 
-echo "====restarting apache====="
-/etc/init.d/httpd restart
+#echo "====restarting apache====="
+#/etc/init.d/httpd restart
