@@ -137,6 +137,7 @@ components:
       installDir:
         default: /var/www/html
         required: true
+
   WEB:
     type: Infrastructure.Network.Network.NSX.OnDemand.Routed
     data:
