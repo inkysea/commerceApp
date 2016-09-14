@@ -3,6 +3,10 @@ name: CommerceApp
 description: Commerce Application with NSX
 status: PUBLISHED
 properties:
+  __nsx.edge_reservation_policy:
+    fixed: NSX
+    secured: false
+    visible: false
   __nsx.management_endpoint_name:
     fixed: vCenter
     secured: false
