@@ -9,8 +9,6 @@ body {
 .main-wrapper { 
     width:100%;
     position:absolute;
-    
-    
 }
 .cartimage
 {
@@ -36,13 +34,12 @@ body {
     text-align: center;
      padding-top:10px;
 }
-.main-pagesection 
+.main-pagesection
 {
     margin: 50px auto;
     background-color: white;
     width:80%;
     xmin-height: 500px;
-    
 }
 .main-pagecontent
 {
