@@ -40,7 +40,7 @@ components:
       config_static_site:
         fixed: /var/www/html
       host:
-        fixed: ${_resource~CentOS7}
+        fixed: ${_resource~AppTier}
       http_node_ips:
         default:
         - None
@@ -65,7 +65,7 @@ components:
       use_ajp:
         default: 'NO'
         required: true
-  CentOS7:
+  AppTier:
     type: Infrastructure.CatalogItem.Machine.Virtual.vSphere
     data:
       _cluster:
@@ -172,7 +172,7 @@ components:
           service_URI: ''
           unhealth_threshold: 10
       tier:
-        fixed: ${_resource~CentOS7}
+        fixed: ${_resource~AppTier}
       tier_nic_index:
         fixed: 0
       vip_network:
@@ -181,11 +181,11 @@ components:
     type: Software.centosyumrepo
     data:
       host:
-        fixed: ${_resource~CentOS7}
+        fixed: ${_resource~AppTier}
       repoURL: https\:\/\/vra-app-1\.inkysea\.com\/artifactory\/list/
 layout:
   Apache_1: 0,0
-  CentOS7: 0,1
+  AppTier: 0,1
   CommerceWebApp_1: 0,0
   NSXRouted: 1,0
   NSX_LB: 0,0
