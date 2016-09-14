@@ -69,8 +69,8 @@ components:
     type: Infrastructure.CatalogItem.Machine.Virtual.vSphere
     data:
       _cluster:
-        default: 2
-        max: 4
+        default: 1
+        max: 2
         min: 1
       action:
         fixed: LinkedClone
