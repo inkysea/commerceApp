@@ -84,7 +84,6 @@ components:
         min: 1
       disks:
       - capacity: 80
-        custom_properties: null
         id: 1458583020412
         initial_location: ''
         is_clone: true
@@ -113,8 +112,8 @@ components:
           id: CloneWorkflow
           label: CloneWorkflow
       reservation_policy:
-          id: NSX
-          label: NSX
+        id: NSX
+        label: NSX
       security_groups: []
       security_tags: []
       source_machine:
@@ -144,6 +143,18 @@ components:
       installDir:
         default: /var/www/html
         required: true
+  NSXRouted:
+    type: Infrastructure.Network.Network.NSX.OnDemand.Routed
+    data:
+      dns:
+        fixed:
+          dns_search_suffix: inkysea.com,inkysea.local
+          dns_suffix: inkysea.com
+          primary_dns: 10.25.27.1
+      name:
+        fixed: NSXRouted
+      parent_network_profile:
+        fixed: NSX Routed
   NSX_LB:
     type: Infrastructure.Network.LoadBalancer.NSX.OnDemand
     data:
@@ -166,18 +177,6 @@ components:
         fixed: 0
       vip_network:
         fixed: ${_resource~NSXRouted}
-  NSXRouted:
-    type: Infrastructure.Network.Network.NSX.OnDemand.Routed
-    data:
-      dns:
-        fixed:
-          dns_search_suffix: inkysea.com,inkysea.local
-          dns_suffix: inkysea.com
-          primary_dns: 10.25.27.1
-      name:
-        fixed: NSXRouted
-      parent_network_profile:
-        fixed: NSX Routed
   centos_yum_repo_1:
     type: Software.centosyumrepo
     data:
@@ -188,6 +187,6 @@ layout:
   Apache_1: 0,0
   CentOS7: 0,1
   CommerceWebApp_1: 0,0
+  NSXRouted: 1,0
   NSX_LB: 0,0
-  WEB: 1,0
   centos_yum_repo_1: 1,0
