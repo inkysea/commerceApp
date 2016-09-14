@@ -108,6 +108,9 @@ components:
         fixed:
           id: CloneWorkflow
           label: CloneWorkflow
+      reservation_policy:
+          id: NSX
+          label: NSX
       security_groups: []
       security_tags: []
       source_machine:
@@ -115,12 +118,12 @@ components:
           id: 390406ac-457d-420f-8df8-a6077e63125f
           label: centos7_vra
       source_machine_external_snapshot:
-        fixed: 2
+        fixed: 3
       source_machine_name:
         fixed: centos7_vra
       source_machine_vmsnapshot:
         fixed:
-          id: '13'
+          id: '23'
       storage:
         default: 80
         max: 80
