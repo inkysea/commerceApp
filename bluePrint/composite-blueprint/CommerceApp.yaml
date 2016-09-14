@@ -106,7 +106,7 @@ components:
         assignment_type: Static
         id: 0
         load_balancing: HTTP
-        network: ${_resource~WEB}
+        network: ${_resource~NSXRouted}
         network_profile: NSX Routed
       provisioning_workflow:
         fixed:
@@ -165,7 +165,7 @@ components:
       tier_nic_index:
         fixed: 0
       vip_network:
-        fixed: ${_resource~WEB}
+        fixed: ${_resource~NSXRouted}
   NSXRouted:
     type: Infrastructure.Network.Network.NSX.OnDemand.Routed
     data:
