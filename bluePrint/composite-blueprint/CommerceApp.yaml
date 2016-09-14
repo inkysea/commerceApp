@@ -166,7 +166,7 @@ components:
         fixed: 0
       vip_network:
         fixed: ${_resource~WEB}
-  WEB:
+  NSXRouted:
     type: Infrastructure.Network.Network.NSX.OnDemand.Routed
     data:
       dns:
@@ -175,7 +175,7 @@ components:
           dns_suffix: inkysea.com
           primary_dns: 10.25.27.1
       name:
-        fixed: WEB
+        fixed: NSXRouted
       parent_network_profile:
         fixed: NSX Routed
   centos_yum_repo_1:
