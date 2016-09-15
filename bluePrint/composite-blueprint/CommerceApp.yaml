@@ -3,16 +3,14 @@ name: CommerceApp
 description: Commerce Application with NSX
 status: PUBLISHED
 properties:
-  __nsx.edge_reservation_policy:
-    fixed: NSX
-    secured: false
-    visible: false
   __nsx.management_endpoint_name:
     fixed: vCenter
+    required: false
     secured: false
     visible: false
   __nsx.transport_zone_name:
     fixed: NSXTransport
+    required: false
     secured: false
     visible: false
   _archiveDays: 1
@@ -69,8 +67,8 @@ components:
     type: Infrastructure.CatalogItem.Machine.Virtual.vSphere
     data:
       _cluster:
-        default: 2
-        max: 4
+        default: 1
+        max: 2
         min: 1
       action:
         fixed: LinkedClone
@@ -84,7 +82,8 @@ components:
         min: 1
       disks:
       - capacity: 80
-        id: 1458583020412
+        custom_properties: null
+        id: 1473864165550
         initial_location: ''
         is_clone: true
         label: Hard disk 1
@@ -105,20 +104,17 @@ components:
         assignment_type: Static
         id: 0
         load_balancing: HTTP
-        network: ${_resource~NSXRouted}
-        network_profile: NSX Routed
+        network: ${_resource~nsx_routed}
+        network_profile: nsx_routed
       provisioning_workflow:
         fixed:
           id: CloneWorkflow
           label: CloneWorkflow
-      reservation_policy:
-        id: NSX
-        label: NSX
       security_groups: []
       security_tags: []
       source_machine:
         fixed:
-          id: 390406ac-457d-420f-8df8-a6077e63125f
+          id: fa1fa132-f148-4a33-8078-96fa5cdaf88d
           label: centos7_vra
       source_machine_external_snapshot:
         fixed: 3
@@ -126,7 +122,7 @@ components:
         fixed: centos7_vra
       source_machine_vmsnapshot:
         fixed:
-          id: '23'
+          id: '2'
       storage:
         default: 80
         max: 80
@@ -135,7 +131,7 @@ components:
     type: Software.CommerceWebApp
     data:
       artifactURL:
-        default: http://10.25.25.40:8080/jenkins/job/CommerceApp/2/artifact/commerceApp.zip
+        default: https://vra-app-1.inkysea.com/artifactory/CommerceApp/commerceApp_1.zip
         required: true
         visible: true
       host:
@@ -143,18 +139,6 @@ components:
       installDir:
         default: /var/www/html
         required: true
-  NSXRouted:
-    type: Infrastructure.Network.Network.NSX.OnDemand.Routed
-    data:
-      dns:
-        fixed:
-          dns_search_suffix: inkysea.com,inkysea.local
-          dns_suffix: inkysea.com
-          primary_dns: 10.25.27.1
-      name:
-        fixed: NSXRouted
-      parent_network_profile:
-        fixed: NSX Routed
   NSX_LB:
     type: Infrastructure.Network.LoadBalancer.NSX.OnDemand
     data:
@@ -176,17 +160,29 @@ components:
       tier_nic_index:
         fixed: 0
       vip_network:
-        fixed: ${_resource~NSXRouted}
+        fixed: ${_resource~nsx_routed}
   centos_yum_repo_1:
     type: Software.centosyumrepo
     data:
       host:
         fixed: ${_resource~AppTier}
       repoURL: https\:\/\/vra-app-1\.inkysea\.com\/artifactory\/list/
+  nsx_routed:
+    type: Infrastructure.Network.Network.NSX.OnDemand.Routed
+    data:
+      dns:
+        fixed:
+          dns_search_suffix: inkysea.com,inkysea.local
+          dns_suffix: inkysea.com
+          primary_dns: 10.25.27.1
+      name:
+        fixed: nsx_routed
+      parent_network_profile:
+        fixed: nsx_routed
 layout:
   Apache_1: 0,0
   AppTier: 0,1
   CommerceWebApp_1: 0,0
-  NSXRouted: 1,0
   NSX_LB: 0,0
   centos_yum_repo_1: 1,0
+  nsx_routed: 1,0
