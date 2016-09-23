@@ -37,7 +37,7 @@ body {
 .main-pagesection
 {
     margin: 50px auto;
-    background-color: white;
+    background-color: red;
     width:80%;
     xmin-height: 500px;
 }
