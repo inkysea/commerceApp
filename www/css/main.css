@@ -37,9 +37,10 @@ body {
 .main-pagesection
 {
     margin: 50px auto;
-    background-color: white;
+    background-color: White;
     width:80%;
     xmin-height: 500px;
+
 }
 .main-pagecontent
 {
