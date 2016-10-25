@@ -118,7 +118,7 @@ components:
       security_tags: []
       source_machine:
         fixed:
-          id: 390406ac-457d-420f-8df8-a6077e63125f
+          id: fa1fa132-f148-4a33-8078-96fa5cdaf88d
           label: centos7_vra
       source_machine_external_snapshot:
         fixed: 3
@@ -126,7 +126,7 @@ components:
         fixed: centos7_vra
       source_machine_vmsnapshot:
         fixed:
-          id: '23'
+          id: '2'
       storage:
         default: 80
         max: 80
