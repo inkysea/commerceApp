@@ -143,7 +143,13 @@ components:
       installDir:
         default: /var/www/html
         required: true
-  NSXRouted:
+  centos_yum_repo_1:
+    type: Software.centosyumrepo
+    data:
+      host:
+        fixed: ${_resource~AppTier}
+      repoURL: https\:\/\/vra-app-1\.inkysea\.com\/artifactory\/list/
+  nsx_routed:
     type: Infrastructure.Network.Network.NSX.OnDemand.Routed
     data:
       dns:
@@ -155,15 +161,9 @@ components:
         fixed: nsx_routed
       parent_network_profile:
         fixed: nsx_routed
-  centos_yum_repo_1:
-    type: Software.centosyumrepo
-    data:
-      host:
-        fixed: ${_resource~AppTier}
-      repoURL: https\:\/\/vra-app-1\.inkysea\.com\/artifactory\/list/
 layout:
   Apache_1: 0,0
   AppTier: 0,1
   CommerceWebApp_1: 0,0
-  NSXRouted: 1,0
   centos_yum_repo_1: 1,0
+  nsx_routed: 1,0
