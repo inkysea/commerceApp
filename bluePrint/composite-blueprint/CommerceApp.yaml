@@ -69,7 +69,7 @@ components:
     type: Infrastructure.CatalogItem.Machine.Virtual.vSphere
     data:
       _cluster:
-        default: 1
+        default: 2
         max: 4
         min: 1
       action:
@@ -104,7 +104,7 @@ components:
       - address: ''
         assignment_type: Static
         id: 0
-        load_balancing: ''
+        load_balancing: HTTP
         network: ${_resource~NSXRouted}
         network_profile: NSX Routed
       provisioning_workflow:
@@ -155,6 +155,28 @@ components:
         fixed: NSXRouted
       parent_network_profile:
         fixed: NSX Routed
+  NSX_LB:
+    type: Infrastructure.Network.LoadBalancer.NSX.OnDemand
+    data:
+      name:
+        fixed: NSX_LB
+      services:
+        fixed:
+        - health_check_interval: 5
+          health_threshold: 5
+          id: HTTP
+          isSelected: true
+          name: HTTP
+          port: 80
+          response_timeout: 5
+          service_URI: ''
+          unhealth_threshold: 10
+      tier:
+        fixed: ${_resource~AppTier}
+      tier_nic_index:
+        fixed: 0
+      vip_network:
+        fixed: ${_resource~NSXRouted}
   centos_yum_repo_1:
     type: Software.centosyumrepo
     data:
@@ -166,4 +188,5 @@ layout:
   AppTier: 0,1
   CommerceWebApp_1: 0,0
   NSXRouted: 1,0
+  NSX_LB: 0,0
   centos_yum_repo_1: 1,0
