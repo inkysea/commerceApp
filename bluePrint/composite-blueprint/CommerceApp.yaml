@@ -105,8 +105,8 @@ components:
         assignment_type: Static
         id: 0
         load_balancing: ''
-        network: ${_resource~NSXRouted}
-        network_profile: NSX Routed
+        network: ${_resource~nsx_routed}
+        network_profile: nsx_routed
       provisioning_workflow:
         fixed:
           id: CloneWorkflow
@@ -152,9 +152,9 @@ components:
           dns_suffix: inkysea.com
           primary_dns: 10.25.27.1
       name:
-        fixed: NSXRouted
+        fixed: nsx_routed
       parent_network_profile:
-        fixed: NSX Routed
+        fixed: nsx_routed
   centos_yum_repo_1:
     type: Software.centosyumrepo
     data:
